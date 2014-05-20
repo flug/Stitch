@@ -1,6 +1,6 @@
 <?php
 
-//namespace Stistch;
+namespace Stitch;
 use \SplFileObject;
 
 class Stistch extends SplFileObject {
