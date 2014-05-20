@@ -1,0 +1,23 @@
+{
+    "name": "flug/stitch",
+    "description": "A simple API extension for SplFileObject",
+    "license": "MIT",
+    "homepage" : "https://github.com:flug/stitch",
+    "keywords": [
+        "csv"   
+    ],
+    "authors": [
+        {
+        "name": "Flug",
+        "email": "flugv1@gmail.com"
+    }
+    ],
+    "require": {
+        "php": ">=5.3.0"
+    },
+    "autoload": {
+        "psr-0": {
+            "Stitch": "src"
+        }
+    }
+}
