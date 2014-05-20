@@ -65,6 +65,11 @@ class Stitch extends SplFileObject {
                 }
 
                 parent::__construct($filename, $openStreamType);
+                parent::setCsvControl(
+                        $this->settings['csv']['delimiter'],
+                        $this->settings['csv']['enclosure'],
+                        $this->settings['csv']['escape']
+                );
                 $this->filename = $filename;
         }
         public static function  instance ($filename,$openStreamType = null,  $settings = array()){
