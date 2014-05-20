@@ -1,10 +1,22 @@
 <?php
 
 namespace Stitch;
+
 use \SplFileObject;
 
-class Stistch extends SplFileObject {
+/**
+ *
+ * @property string $filename
+ * @property array  $settings
+ *
+ */
+class Stitch extends SplFileObject {
 
+        /**
+         * Name of file serialize
+         * @var string
+         *
+         */
         private $filename;
         private $settings = [
                 'csv' => [
@@ -13,6 +25,12 @@ class Stistch extends SplFileObject {
                         "escape"    => '"'
                 ]
         ];
+
+        /**
+         *
+         * The method for open file
+         *
+         */
         const OPEN_READ_ONLY  = "r",
                 OPEN_READ_WRITE_PLUS = "r+",
                 OPEN_WRITE_ONLY_CREATE = "w",
@@ -24,6 +42,18 @@ class Stistch extends SplFileObject {
                 OPEN_WRITE_ONLY_CREATE_UNTRUNCATE = "c",
                 OPEN_WRITE_READ_CREATE_UNTRUNCATE = "c+" ;
 
+        ////////////////////////////////////////////////////////////////////////
+        ////////////////////////////Constructor/////////////////////////////////
+        ////////////////////////////////////////////////////////////////////////
+
+        /**
+         *
+         * Create a new Stitch instance.
+         *
+         * @param string    $filename
+         * @param self Constante|string $openStreamType
+         * @param array     $settings
+         */
         public function __construct($filename,$openStreamType = null,  $settings = array()){
 
                 if($openStreamType == null) {
