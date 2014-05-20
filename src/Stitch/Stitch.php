@@ -31,7 +31,7 @@ class Stitch extends SplFileObject {
          * The method for open file
          *
          */
-        const OPEN_READ_ONLY  = "r",
+        const   OPEN_READ_ONLY  = "r",
                 OPEN_READ_WRITE_PLUS = "r+",
                 OPEN_WRITE_ONLY_CREATE = "w",
                 OPEN_WRITE_READ_CREATE = "w+",
