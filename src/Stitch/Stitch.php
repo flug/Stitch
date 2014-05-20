@@ -69,5 +69,12 @@ class Stistch extends SplFileObject {
                 }
                 return false;
         }
+        public function fputcsv(array $fields)
+        {
+                parent::fputcsv($fields,
+                        $this->settings['csv']['delimiter'],
+                        $this->settings['csv']['enclosure']
+                );
+        }
 }
 
