@@ -3,7 +3,7 @@
 namespace Stitch;
 use \SplFileObject;
 
-class Stistch extends SplFileObject {
+class Stitch extends SplFileObject {
 
         private $filename;
         private $settings = [
