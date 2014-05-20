@@ -11,19 +11,18 @@ class Stistch extends SplFileObject {
                         "delimiter" => ';',
                         "enclosure" => '"',
                         "escape"    => '"'
-
                 ]
         ];
         const OPEN_READ_ONLY  = "r",
-              OPEN_READ_WRITE_PLUS = "r+",
-              OPEN_WRITE_ONLY_CREATE = "w",
-              OPEN_WRITE_READ_CREATE = "w+",
-              OPEN_READ_ONLY_END_FILE = "a",
-              OPEN_READ_WRITE_END_FILE = "a+",
-              OPEN_CREATE_WRITE         = "x",
-              OPEN_CREATE_WRITE_READ    = "x+",
-              OPEN_WRITE_ONLY_CREATE_UNTRUNCATE = "c",
-              OPEN_WRITE_READ_CREATE_UNTRUNCATE = "c+" ;
+                OPEN_READ_WRITE_PLUS = "r+",
+                OPEN_WRITE_ONLY_CREATE = "w",
+                OPEN_WRITE_READ_CREATE = "w+",
+                OPEN_READ_ONLY_END_FILE = "a",
+                OPEN_READ_WRITE_END_FILE = "a+",
+                OPEN_CREATE_WRITE         = "x",
+                OPEN_CREATE_WRITE_READ    = "x+",
+                OPEN_WRITE_ONLY_CREATE_UNTRUNCATE = "c",
+                OPEN_WRITE_READ_CREATE_UNTRUNCATE = "c+" ;
 
         public function __construct($filename,$openStreamType = null,  $settings = array()){
 
