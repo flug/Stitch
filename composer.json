@@ -19,5 +19,10 @@
         "psr-0": {
             "Stitch": "src"
         }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.x.x-dev"
+        }
     }
 }
