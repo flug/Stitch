@@ -2,16 +2,32 @@
 
 namespace Stitch;
 
-use \SplFileObject;
+use SplFileObject;
 
 /**
  *
  * @property string $filename
- * @property array  $settings
+ * @property array $settings
  *
  */
-class Stitch extends SplFileObject {
+class Stitch extends SplFileObject
+{
 
+        /**
+         *
+         * The method for open file
+         *
+         */
+        const   OPEN_READ_ONLY = "r",
+            OPEN_READ_WRITE_PLUS = "r+",
+            OPEN_WRITE_ONLY_CREATE = "w",
+            OPEN_WRITE_READ_CREATE = "w+",
+            OPEN_READ_ONLY_END_FILE = "a",
+            OPEN_READ_WRITE_END_FILE = "a+",
+            OPEN_CREATE_WRITE = "x",
+            OPEN_CREATE_WRITE_READ = "x+",
+            OPEN_WRITE_ONLY_CREATE_UNTRUNCATE = "c",
+            OPEN_WRITE_READ_CREATE_UNTRUNCATE = "c+";
         /**
          * Name of file serialize
          * @var string
@@ -19,28 +35,12 @@ class Stitch extends SplFileObject {
          */
         private $filename;
         private $settings = [
-                'csv' => [
-                        "delimiter" => ';',
-                        "enclosure" => '"',
-                        "escape"    => '"'
-                ]
+            'csv' => [
+                "delimiter" => ';',
+                "enclosure" => '"',
+                "escape" => '"'
+            ]
         ];
-
-        /**
-         *
-         * The method for open file
-         *
-         */
-        const   OPEN_READ_ONLY  = "r",
-                OPEN_READ_WRITE_PLUS = "r+",
-                OPEN_WRITE_ONLY_CREATE = "w",
-                OPEN_WRITE_READ_CREATE = "w+",
-                OPEN_READ_ONLY_END_FILE = "a",
-                OPEN_READ_WRITE_END_FILE = "a+",
-                OPEN_CREATE_WRITE         = "x",
-                OPEN_CREATE_WRITE_READ    = "x+",
-                OPEN_WRITE_ONLY_CREATE_UNTRUNCATE = "c",
-                OPEN_WRITE_READ_CREATE_UNTRUNCATE = "c+" ;
 
         ////////////////////////////////////////////////////////////////////////
         ////////////////////////////Constructor/////////////////////////////////
@@ -50,56 +50,64 @@ class Stitch extends SplFileObject {
          *
          * Create a new Stitch instance.
          *
-         * @param string    $filename
+         * @param string $filename
          * @param self Constante|string $openStreamType
-         * @param array     $settings
+         * @param array $settings
          */
-        public function __construct($filename,$openStreamType = null,  $settings = array()){
+        public function __construct($filename, $openStreamType = null, $settings = [])
+        {
 
-                if($openStreamType == null) {
-                        $openStreamType =   self::OPEN_READ_ONLY_END_FILE;
+                if ($openStreamType == null) {
+                        $openStreamType = self::OPEN_READ_ONLY_END_FILE;
                 }
 
-                if((bool) $settings){
+                if ((bool)$settings) {
                         $this->settings = $settings;
                 }
 
                 parent::__construct($filename, $openStreamType);
                 parent::setCsvControl(
-                        $this->settings['csv']['delimiter'],
-                        $this->settings['csv']['enclosure'],
-                        $this->settings['csv']['escape']
+                    $this->settings['csv']['delimiter'],
+                    $this->settings['csv']['enclosure'],
+                    $this->settings['csv']['escape']
                 );
                 $this->filename = $filename;
         }
-        public static function  instance ($filename,$openStreamType = null,  $settings = array()){
-                return new static ($filename,$openStreamType = null,  $settings = array());
+
+        public static function  instance($filename, $openStreamType = null, $settings = [])
+        {
+                return new static ($filename, $openStreamType = null, $settings = []);
         }
 
-        public function addHeader(array $inputHeader = array()){
+        public function addHeader(array $inputHeader = [])
+        {
                 return self::fputcsv(
-                        $inputHeader,
-                        $this->settings['csv']['delimiter'],
-                        $this->settings['csv']['enclosure']
-                );
-        }
-        public function writeContentLine(array  $lineItems = array()){
-                return self::fputcsv($lineItems,
-                        $this->settings['csv']['delimiter'],
-                        $this->settings['csv']['enclosure']
-
+                    $inputHeader,
+                    $this->settings['csv']['delimiter'],
+                    $this->settings['csv']['enclosure']
                 );
         }
 
-        public function writeCollection($collection =array()){
+        public function writeCollection($collection = [])
+        {
 
-                foreach($collection as $lineItems){
+                foreach ($collection as $lineItems) {
                         self::writeContentLine($lineItems);
                 }
         }
 
-        public function remove(){
-                if(file_exists($this->filename)){
+        public function writeContentLine(array  $lineItems = [])
+        {
+                return self::fputcsv($lineItems,
+                    $this->settings['csv']['delimiter'],
+                    $this->settings['csv']['enclosure']
+
+                );
+        }
+
+        public function remove()
+        {
+                if (file_exists($this->filename)) {
                         return unlink($this->filename);
                 }
                 return false;
