@@ -76,7 +76,7 @@ class Stitch extends SplFileObject
 
         public static function  instance($filename, $openStreamType = null, $settings = [])
         {
-                return new static ($filename, $openStreamType = null, $settings = []);
+                return new static ($filename, $openStreamType , $settings);
         }
 
         public function addHeader(array $inputHeader = [])
