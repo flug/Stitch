@@ -5,7 +5,8 @@
     "type": "library",
     "homepage" : "https://github.com/flug/stitch",
     "keywords": [
-        "csv"   
+        "csv",
+        "export"
     ],
     "authors": [
         {
