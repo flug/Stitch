@@ -2,6 +2,7 @@
     "name": "flug/stitch",
     "description": "A simple API extension for SplFileObject",
     "license": "MIT",
+    "type": "library",
     "homepage" : "https://github.com/flug/stitch",
     "keywords": [
         "csv"   
