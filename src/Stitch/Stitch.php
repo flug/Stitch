@@ -92,16 +92,18 @@ class Stitch extends SplFileObject
     {
 
         foreach ($collection as $lineItems) {
+            $lineItems = $this->normalizeData($lineItems);
             self::writeContentLine($lineItems);
         }
     }
 
     public function writeContentLine(array  $lineItems = [])
     {
+        $lineItems = $this->normalizeData($lineItems);
+
         return self::fputcsv($lineItems,
             $this->settings['csv']['delimiter'],
             $this->settings['csv']['enclosure']
-
         );
     }
 
@@ -111,6 +113,26 @@ class Stitch extends SplFileObject
             return unlink($this->filename);
         }
         return false;
+    }
+
+    private function normalizeData($lineItems)
+    {
+        if (is_string($lineItems)) {
+            return $lineItems;
+        }
+        $lineItems = array_map(function ($var) {
+            if (is_array($var)) {
+                return json_encode($var);
+            }
+            if (is_object($var) && $var instanceof \JsonSerializable) {
+                return json_encode($var);
+            }
+            if (is_object($var)) {
+                return "[object Object]";
+            }
+            return $var;
+        }, $lineItems);
+        return $lineItems;
     }
 }
 
