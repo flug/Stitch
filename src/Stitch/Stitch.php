@@ -7,7 +7,7 @@ use SplFileObject;
 /**
  *
  * @property string $filename
- * @property array $settings
+ * @property array  $settings
  *
  */
 class Stitch extends SplFileObject
@@ -38,7 +38,7 @@ class Stitch extends SplFileObject
         'csv' => [
             "delimiter" => ';',
             "enclosure" => '"',
-            "escape" => '"'
+            "escape"    => '"'
         ]
     ];
 
@@ -51,8 +51,8 @@ class Stitch extends SplFileObject
      * Create a new Stitch instance.
      *
      * @param string $filename
-     * @param self Constante|string $openStreamType
-     * @param array $settings
+     * @param        self Constant|string $openStreamType
+     * @param array  $settings
      */
     public function __construct($filename, $openStreamType = null, $settings = [])
     {
@@ -74,7 +74,7 @@ class Stitch extends SplFileObject
         $this->filename = $filename;
     }
 
-    public static function  instance($filename, $openStreamType = null, $settings = [])
+    public static function instance($filename, $openStreamType = null, $settings = [])
     {
         return new static ($filename, $openStreamType, $settings);
     }
